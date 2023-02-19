@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next.js: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev"
+    },
+    {
+      "name": "Next.js: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000"
+    },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      //   "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "Stripe: Webhooks listen",
+      "type": "stripe",
+      "request": "launch",
+      "command": "listen",
+      "forwardTo": "http://localhost:3000",
+      "forwardConnectTo": "http://localhost:3000",
+      "events": ["payment_intent.succeeded", "payment_intent.canceled"],
+      "skipVerify": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch: Stripe + API",
+      "configurations": [
+        "Next.js: debug server-side",
+        "Stripe: Webhooks listen"
+      ]
+    }
+  ]
+}

@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  nav.navbar {
+    @apply h-[50px] w-full bg-gradient-to-b from-[#15162c] to-[#2e026d];
+  }
+
+  nav.navbar [type="radio"] {
+    @apply hidden;
+  }
+
+  nav.navbar .nav-item {
+    @apply z-10 w-2/12 cursor-pointer self-center rounded p-2 text-center text-white hover:bg-[#15162c80];
+  }
+
+  nav.navbar .nav-item label {
+    @apply cursor-pointer;
+  }
+
+  nav.navbar .nav-wrapper {
+    @apply relative flex h-0 flex-col justify-end overflow-hidden opacity-0 md:h-auto md:flex-row md:opacity-100;
+    transition: all 0.5s ease-in-out;
+    transform: translateY(10%);
+  }
+
+  nav.navbar .nav-wrapper.open {
+    transform: translateY(0);
+    @apply h-auto bg-gradient-to-b from-[#2e026d] to-[#15162c] opacity-100;
+  }
+
+  nav.navbar .nav-slider {
+    @apply border-b-hot-pink absolute bottom-0 z-0 hidden h-[90%] w-2/12 rounded border-b-2 bg-[#15162c] md:block;
+    transition: right linear 0.5s;
+    right: calc(16.6% * 2);
+  }
+
+  nav.navbar #projects:checked ~ .nav-wrapper .nav-slider {
+    right: 16.6%;
+  }
+
+  nav.navbar #about:checked ~ .nav-wrapper .nav-slider {
+    right: 0;
+  }
+}
