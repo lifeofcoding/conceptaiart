@@ -64,4 +64,14 @@ export const generatorRouter = createTRPCRouter({
         images: responseData,
       };
     }),
+  getCredits: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+      select: {
+        credits: true,
+      },
+    });
+  }),
 });

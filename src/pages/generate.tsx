@@ -12,12 +12,17 @@ import { ImagesResponseDataInner } from "openai";
 import { useSession, signIn } from "next-auth/react";
 
 const Generate: NextPage = () => {
+  const utils = api.useContext();
   const { data: sessionData } = useSession();
   const [images, setImages] = useState<ImagesResponseDataInner[]>([]);
+  const userCredits = api.generator.getCredits.useQuery(undefined, {
+    enabled: Boolean(sessionData),
+  });
   const { mutate, isLoading } = api.generator.generate.useMutation({
     onSuccess(data) {
       setImages(data.images);
       localStorage.setItem("prompt", "");
+      utils.generator.getCredits.invalidate();
     },
     onError(error, variables, context) {
       debugger;
@@ -73,7 +78,14 @@ const Generate: NextPage = () => {
     <Page title="Generate">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <div className="min-h-screen w-full rounded bg-black/50 p-5 text-white">
-          <h1 className="pageTitle">Generate Concept</h1>
+          <div className="flex justify-between">
+            <div>
+              <h1 className="pageTitle">Generate Concept</h1>
+            </div>
+            {userCredits && userCredits.data ? (
+              <div>Credits: {userCredits.data.credits}</div>
+            ) : null}
+          </div>
 
           <div className="flex w-full flex-col items-center justify-center">
             <div className="mt-2 mb-2 flex aspect-square w-full items-center justify-center rounded border border-white p-2 md:w-3/5">
