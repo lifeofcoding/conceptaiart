@@ -31,16 +31,20 @@
   }
 
   nav.navbar .nav-slider {
-    @apply border-b-hot-pink absolute bottom-0 z-0 hidden h-[90%] w-2/12 rounded border-b-2 bg-[#15162c] md:block;
+    @apply absolute bottom-0 z-0 hidden h-[90%] w-2/12 rounded border-b-2 border-b-hot-pink bg-[#15162c] md:block;
     transition: right linear 0.5s;
     right: calc(16.6% * 2);
   }
 
-  nav.navbar #projects:checked ~ .nav-wrapper .nav-slider {
+  nav.navbar #concepts:checked ~ .nav-wrapper .nav-slider {
     right: 16.6%;
   }
 
-  nav.navbar #about:checked ~ .nav-wrapper .nav-slider {
+  nav.navbar #generate:checked ~ .nav-wrapper .nav-slider {
     right: 0;
+  }
+
+  .pageTitle {
+    @apply text-2xl font-extrabold;
   }
 }

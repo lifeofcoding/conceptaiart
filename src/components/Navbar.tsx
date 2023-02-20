@@ -35,7 +35,7 @@ const Navbar = () => {
             />
           </div>
           <span className="text-md font-semibold tracking-tight">
-            LivingTheCode<span className="text-hot-pink">.</span>Life
+            Concept <span className="text-hot-pink">AI</span> Art
           </span>
         </div>
 
@@ -71,18 +71,18 @@ const Navbar = () => {
           />
           <input
             type="radio"
-            value="projects"
-            id="projects"
+            value="concepts"
+            id="concepts"
             name="nav-link"
-            checked={path === "/projects"}
+            checked={path === "/concepts"}
             readOnly
           />
           <input
             type="radio"
-            value="projects"
-            id="about"
+            value="generate"
+            id="generate"
             name="nav-link"
-            checked={path === "/about"}
+            checked={path === "/generate"}
             readOnly
           />
 
@@ -95,11 +95,11 @@ const Navbar = () => {
             <Link href="/" className="nav-item">
               <label htmlFor="home">Home</label>
             </Link>
-            <Link href="/projects" className="nav-item">
-              <label htmlFor="projects">Projects</label>
+            <Link href="/concepts" className="nav-item">
+              <label htmlFor="concepts">Concepts</label>
             </Link>
-            <Link href="/about" className="nav-item">
-              <label htmlFor="about">About</label>
+            <Link href="/generate" className="nav-item">
+              <label htmlFor="generate">Generate</label>
             </Link>
             <div className="nav-slider"></div>
           </div>
