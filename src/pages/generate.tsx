@@ -14,7 +14,9 @@ import { useSession, signIn } from "next-auth/react";
 const Generate: NextPage = () => {
   const utils = api.useContext();
   const { data: sessionData } = useSession();
-  const [images, setImages] = useState<ImagesResponseDataInner[]>([]);
+  const [images, setImages] = useState<
+    { image: string; prompt: string; userId: string }[]
+  >([]);
   const userCredits = api.generator.getCredits.useQuery(undefined, {
     enabled: Boolean(sessionData),
   });
@@ -89,7 +91,7 @@ const Generate: NextPage = () => {
 
           <div className="flex w-full flex-col items-center justify-center">
             <div className="mt-2 mb-2 flex aspect-square w-full items-center justify-center rounded border border-white p-2 md:w-3/5">
-              <ResultsWindow image={images[0]?.url} isLoading={isLoading} />
+              <ResultsWindow image={images[0]?.image} isLoading={isLoading} />
             </div>
 
             <div className="flex w-full flex-col  rounded bg-slate-600 p-2 md:w-3/4">
