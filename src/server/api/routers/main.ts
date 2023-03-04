@@ -35,34 +35,41 @@ export const generatorRouter = createTRPCRouter({
       });
 
       let response;
-      try {
-        if (input.file) {
-          const buffer: Buffer = Buffer.from(input.file, "base64");
-          // Cast the buffer to `any` so that we can set the `name` property
-          const file: any = buffer;
-          // Set a `name` that ends with .png so that the API knows it's a PNG image
-          file.name = "image.png";
-          response = await openai.createImageVariation(file, 1, "512x512");
-        } else {
-          response = await openai.createImage({
-            prompt: input.prompt,
-            n: 1,
-            // size: "1024x1024",
-            size: "512x512",
-          });
-        }
-      } catch (error: any) {
-        if (error.response) {
-          console.log(error.response.status);
-          console.log(error.response.data);
-        } else {
-          console.log(error.message);
-        }
-        throw new TRPCError({
-          message: "Internal Server Error",
-          code: "INTERNAL_SERVER_ERROR",
-        });
-      }
+      // try {
+      //   if (input.file) {
+      //     const buffer: Buffer = Buffer.from(input.file, "base64");
+      //     // Cast the buffer to `any` so that we can set the `name` property
+      //     const file: any = buffer;
+      //     // Set a `name` that ends with .png so that the API knows it's a PNG image
+      //     file.name = "image.png";
+      //     response = await openai.createImageVariation(file, 1, "512x512");
+      //   } else {
+      //     response = await openai.createImage({
+      //       prompt: input.prompt,
+      //       n: 1,
+      //       // size: "1024x1024",
+      //       size: "512x512",
+      //     });
+      //   }
+      // } catch (error: any) {
+      //   if (error.response) {
+      //     console.log(error.response.status);
+      //     console.log(error.response.data);
+      //   } else {
+      //     console.log(error.message);
+      //   }
+      //   throw new TRPCError({
+      //     message: "Internal Server Error",
+      //     code: "INTERNAL_SERVER_ERROR",
+      //   });
+      // }
+
+      response = await openai.createImage({
+        prompt: input.prompt,
+        n: 1,
+        // size: "1024x1024",
+        size: "512x512",
+      });
 
       const responseData = response?.data?.data;
 
