@@ -21,7 +21,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["conceptaiart.s3.us-east-2.amazonaws.com"],
+    // domains: ["conceptaiart.s3.us-east-2.amazonaws.com"],
     // remotePatterns: [
     //   {
     //     protocol: "https",

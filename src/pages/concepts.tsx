@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import Image from "next/image";
+// import Image from "next/image";
 import Page from "@components/Page";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -65,7 +65,12 @@ const Concepts: NextPage = () => {
                   className="relative aspect-square w-full rounded bg-black"
                   key={concept.id}
                 >
-                  <Image alt={concept.prompt} src={concept.image} fill />
+                  {/* <Image alt={concept.prompt} src={concept.image} fill /> */}
+                  <img
+                    src={concept.image}
+                    alt={concept.prompt}
+                    style={{ objectFit: "fill" }}
+                  />
                 </div>
               ))}
             </div>
