@@ -21,7 +21,7 @@ import { type Session } from "next-auth";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 import { openai } from "~/utils/openapi";
-import { s3, uploadToS3 } from "~/utils/s3";
+// import { s3, uploadToS3 } from "~/utils/s3";
 
 type CreateContextOptions = {
   session: Session | null;
@@ -42,8 +42,8 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
     session: opts.session,
     prisma,
     openai,
-    s3,
-    uploadToS3,
+    // s3,
+    // uploadToS3,
   };
 };
 

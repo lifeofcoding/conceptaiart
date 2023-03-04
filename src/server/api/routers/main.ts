@@ -10,7 +10,7 @@ export const generatorRouter = createTRPCRouter({
   generate: protectedProcedure
     .input(GenerateSchema)
     .mutation(async ({ input, ctx }) => {
-      const { openai, prisma, session, uploadToS3 } = ctx;
+      const { openai, prisma, session } = ctx;
 
       await prisma.$transaction(async (tx) => {
         const sender = await tx.user.update({
@@ -75,7 +75,8 @@ export const generatorRouter = createTRPCRouter({
       // ];
 
       const responsePromises = responseData.map(async (d) => {
-        const url = await uploadToS3(d.url);
+        // const url = await uploadToS3(d.url);
+        const url = d.url;
         return {
           image: url || "",
           prompt: input.prompt,
