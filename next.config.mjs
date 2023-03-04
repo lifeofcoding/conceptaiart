@@ -21,14 +21,15 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "conceptaiart.s3.us-east-2.amazonaws.com",
-        port: "",
-        pathname: "**",
-      },
-    ],
+    domains: ["conceptaiart.s3.us-east-2.amazonaws.com"],
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: "conceptaiart.s3.us-east-2.amazonaws.com",
+    //     port: "",
+    //     pathname: "**",
+    //   },
+    // ],
   },
 };
 export default config;
